@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/nav-bar.css">
+    <link rel="stylesheet" type="text/css" href="css/facsa-merch.css">
+    <link rel="stylesheet" type="text/css" href="css/shopping.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="images/facsa-logo.png" type="image/x-icon"/>
+    <title>FACSA MERCH | SHOPPING BAG</title>
+</head>
+<body>
+    <header>
+        <!-- <div id="announcement">
+            <p>BARRIO FIESTA DETAILS COMING SOON...</p>
+        </div> -->
+        <nav>
+            <ul>
+                <li><a href="facsa-merch.html">HOME</a></li>
+                <li><a href="shop-all.html">SHOP ALL</a></li>
+            </ul>
+            <a href="facsa-merch.html"><img id="logo" src="images\facsa-logo.png" alt="logo"></a>
+            <ul>
+                <li><a href="guide.html">HOW THIS WORKS</a></li>
+                <li><a href="shopping-bag.html"><img id="bag" src="images/bag.png"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>SHOPPING BAG</h1>
+    <div id="overlay"></div>
+    <div id="pop-up">
+        <h1>USER INFO</h1>
+        <form id="form">
+            <div class="input">
+                <input type="text" name="Name" placeholder="Name" id="name" required>
+                <span id="icon"><i class='bx bxs-user'></i></span>
+            </div>
+            <div class="input">
+                <input type="email" name="Email" placeholder="Email" id="email" required>
+                <span id="icon"><i class='bx bxs-envelope'></i></span>
+            </div>
+            <button type="submit" id="save">SAVE</button>
+        </form>
+    </div>
+    <main>
+        <div id="zero">
+            <div id="empty-message">
+                <h2>YOUR SHOPPING BAG IS EMPTY!</h2>
+            </div>
+            <button id="continue"><a id="cs" href="shop-all.html">CONTINUE SHOPPING</a></button>
+        </div>
+        <div id="cartCont">
+            <div id="cart-items"></div>
+            <button id="place" onclick="placeOrder()">PLACE ORDER</button>
+        </div>
+    </main>    
+
+    <script>
+        const cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        const emptyMessage = document.getElementById('empty-message');
+        const csButton = document.getElementById('continue');
+        const poButton = document.getElementById('place');
+        const totPrice = document.getElementById("total");
+        let total = 0;
+    cart.forEach(item => {
+        total += 15.00;
+    });
+
+        if (cart.length === 0) {
+            emptyMessage.style.display = 'block';
+            csButton.style.display = 'block';
+            poButton.style.display = 'none';
+            totPrice.style.display = 'none';
+
+        } else {
+            emptyMessage.style.display = 'none';
+            csButton.style.display = 'none';
+        }
+        function displayCart() {
+            const cartContainer = document.getElementById("cart-items");
+            cartContainer.innerHTML = "";
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement("div");
+                itemDiv.classList.add("cart-item");
+                itemDiv.innerHTML = `
+                    <div id="cartDeets">
+                        <strong>${item.name}</strong>
+                        <p>Size: ${item.size}</p>
+                        <p>$15.00</p>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem(${index})"><i class='bx bx-trash'></i></button>
+                `;
+                cartContainer.appendChild(itemDiv);
+            });
+            const totalPrice = document.createElement("div");
+            totalPrice.innerHTML = `
+                <div id="total">
+                    <strong>TOTAL:</strong>
+                    <p>$${total}.00</p>
+                </div>
+            `;
+            cartContainer.appendChild(totalPrice);
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+            location.reload();
+        }
+
+        function closePopup() {
+            const popup = document.getElementById("pop-up");
+            popup.style.display = "none";
+            popup.style.pointerEvents = "none"; 
+            document.getElementById("overlay").style.display = "none";
+        }
+        function showPopup() {
+            document.getElementById("pop-up").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("pop-up").style.pointerEvents = "auto";
+            document.getElementById("overlay").style.pointerEvents = "auto";
+        }
+        document.getElementById("form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            if (name && email) {
+                sessionStorage.setItem("name", name);
+                sessionStorage.setItem("email", email);
+                closePopup();
+            }
+        });
+        
+        function placeOrder() {
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+    const name = sessionStorage.getItem("name") || "";
+    const email = sessionStorage.getItem("email") || "";
+
+    console.log("Sending order to backend:", { name, email, order: cart });
+
+    fetch('https://script.google.com/macros/s/AKfycbyh52bMvrlNXvdoeFHceW1cpBQqWDpS5m3NvrRcxTegIGRN1IHJGhVEEs9v4QW2kW1fQw/exec', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'text/plain'
+    },
+    body: JSON.stringify({ name, email, order: cart })
+})
+    .then(response => response.json())
+    .then(data => {
+    console.log('Backend response:', data);
+    alert('Order placed successfully!');
+    sessionStorage.removeItem('cart');
+    displayCart();
+    })
+    .catch(error => {
+    console.error('Error placing order:', error);
+    alert('Order failed. Check console.');
+    });
+        }
+        window.onload = function() {
+            const name = sessionStorage.getItem("name");
+            const email = sessionStorage.getItem("email");
+            if (!name || !email) {
+                showPopup();
+            }
+            displayCart();
+        }
+    </script>
+
+</body>
+</html>

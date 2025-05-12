@@ -1,0 +1,77 @@
+html {
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+#preview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5rem;
+    padding-left: 80.4px;
+    padding-right: 80.4px;
+}
+#preview a p {
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 5px;
+}
+#product {
+    overflow: hidden;
+    cursor: pointer;
+    width: 400px;
+}
+#product img {
+    transition: all 0.5s;
+}
+#product:hover img{
+    transform: scale(1.05);
+}
+#product h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+}
+#product p {
+    margin-top: 5px;
+}
+
+#all {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#all button {
+    width: 250px;
+    border-radius: 50px;
+    margin-top: 30px;
+    margin-bottom: 45px;
+    background-color: transparent;
+    border: 3px solid rgb(192, 0, 0);
+    background-image: url("../images/button-fill.png");
+    background-repeat: repeat-x;
+    background-position: 0 -100%;
+    transition: 1.5s ease;
+    cursor: pointer;
+}
+#all button:hover, #all a:hover {
+    background-position: center;
+    text-decoration: none;
+    color: white;
+}
+#all button a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+    color: rgb(192, 0, 0);
+    transition: 1.2s ease;
+}

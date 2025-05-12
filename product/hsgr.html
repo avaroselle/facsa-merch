@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+    <link rel="stylesheet" type="text/css" href="../css/facsa-merch.css">
+    <link rel="stylesheet" type="text/css" href="../css/product.css">
+    <link rel="icon" href="../images/facsa-logo.png" type="image/x-icon"/>
+    <title>FACSA MERCH</title>
+</head>
+<body>
+    <header>
+        <!-- <div id="announcement">
+            <p>BARRIO FIESTA DETAILS COMING SOON...</p>
+        </div> -->
+        <nav>
+            <ul>
+                <li><a href="../facsa-merch.html">HOME</a></li>
+                <li><a href="../shop-all.html">SHOP ALL</a></li>
+            </ul>
+            <a href="../facsa-merch.html"><img id="logo" src="../images/facsa-logo.png" alt="logo"></a>
+            <ul>
+                <li><a href="../guide.html">HOW THIS WORKS</a></li>
+                <li><a href="../shopping-bag.html"><img id="bag" src="../images/bag.png"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="item">
+        <img src="../images/half/half-grey.png">
+        <aside id="details">
+            <h1>FIL-AM RISE GR</h1>
+            <p>$15.00</p>
+            <div id="colors">
+                <a href="fsbk.html"><button id="black"></button></a>
+                <a href="fsgr.html"><button id="grey"></button></a>
+                <a href="fsnv.html"><button id="navy"></button></a>
+                <a href="fsbl.html"><button id="blue"></button></a>
+                <a href="fsyl.html"><button id="yellow"></button></a>
+                <a href="fsrd.html"><button id="red"></button></a>
+            </div>
+            <div id="info">
+                <div class="dropdown">
+                    <div class="select">
+                        <span class="selected">S</span>
+                        <div class="caret"></div>
+                    </div>
+                    <ul class="size">
+                        <li class="active">S</li>
+                        <li>M</li>
+                        <li>L</li>
+                        <li>XL</li>
+                        <li>XXL</li>
+                    </ul>
+                </div>
+                <button id="add" onclick="addToCart(document.querySelector('h1').innerText, document.querySelector('.selected').innerText)"><h2>ADD TO BAG</h2></button>
+            </div>
+        </aside>
+    </div>
+    <script src="../../js/facsa-merch.js"></script>
+    <script>
+        function addToCart(itemName, size) {
+            let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+            cart.push({ name: itemName, size: size });
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            alert('Item added to cart!');
+        }
+    </script>
+</body>
+</html>

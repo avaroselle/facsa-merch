@@ -1,0 +1,26 @@
+#description {
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-bottom: 50px;
+}
+#description p {
+    font-size: 20px;
+    margin-top: 5px;
+}
+#description h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(192, 0, 0);
+    margin-bottom: 5px;
+}
+
+/* #pics {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+    margin-bottom: 70px;
+}
+#pics img {
+    width: 400px;
+} */
