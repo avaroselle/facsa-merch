@@ -64,7 +64,7 @@
         const totPrice = document.getElementById("total");
         let total = 0;
     cart.forEach(item => {
-        total += 15.00;
+        total += 25.00;
     });
 
         if (cart.length === 0) {
@@ -87,7 +87,7 @@
                     <div id="cartDeets">
                         <strong>${item.name}</strong>
                         <p>Size: ${item.size}</p>
-                        <p>$15.00</p>
+                        <p>$25.00</p>
                     </div>
                     <button class="remove-btn" onclick="removeItem(${index})"><i class='bx bx-trash'></i></button>
                 `;
