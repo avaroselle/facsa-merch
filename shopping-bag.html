@@ -62,17 +62,18 @@
         const csButton = document.getElementById('continue');
         const poButton = document.getElementById('place');
         const totPrice = document.getElementById("total");
+
         let total = 0;
-    cart.forEach(item => {
-        total += 25.00;
-    });
+
+        cart.forEach(item => {
+            total += 25.00;
+        });
 
         if (cart.length === 0) {
             emptyMessage.style.display = 'block';
             csButton.style.display = 'block';
             poButton.style.display = 'none';
             totPrice.style.display = 'none';
-
         } else {
             emptyMessage.style.display = 'none';
             csButton.style.display = 'none';
@@ -142,40 +143,38 @@
                 closePopup();
             }
         });
-        
         function placeOrder() {
-    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-    const name = sessionStorage.getItem("name") || "";
-    const email = sessionStorage.getItem("email") || "";
+            const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            const name = sessionStorage.getItem("name") || "";
+            const email = sessionStorage.getItem("email") || "";
 
-    console.log("Sending order to backend:", { name, email, order: cart });
+            console.log("Sending order to backend:", { name, email, order: cart });
 
-    fetch('https://script.google.com/macros/s/AKfycbxEsf5j4eg_QuzcgcZ12Jfe3hoLz1E94q4z782ZYa23vWFyB1P-92C8EDKkwjt1K0PiqA/exec', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'text/plain'
-    },
-    body: JSON.stringify({ name, email, order: cart })
-})
-    .then(response => response.json())
-    .then(data => {
-    console.log('Backend response:', data);
-    alert('Order placed successfully!');
-    sessionStorage.removeItem('cart');
-    displayCart();
-    })
-    .catch(error => {
-    console.error('Error placing order:', error);
-    alert('Order failed. Check console.');
-    });
-        }
-        window.onload = function() {
-            const name = sessionStorage.getItem("name");
-            const email = sessionStorage.getItem("email");
-            if (!name || !email) {
-                showPopup();
-            }
-            displayCart();
+            // Update to your new deployment URL after redeploying your Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbz5Wr2doEkL5p9mTAltqttms1sJ89JiqLIMqbWkoD6c5F8rJgrQHrpM8CGvn3WTQ1AStw/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Changed from 'text/plain' to 'application/json'
+                },
+                mode: 'cors',
+                body: JSON.stringify({ name, email, order: cart })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Backend response:', data);
+                alert('Order placed successfully!');
+                sessionStorage.removeItem('cart');
+                // window.location.href = "order-confirmation.html"; // Optional: redirect to a confirmation page
+            })
+            .catch(error => {
+                console.error('Error placing order:', error);
+                alert('Order failed. Please try again later.');
+            });
         }
     </script>
 
