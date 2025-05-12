@@ -55,6 +55,9 @@ main {
     margin-top: 10px;
     width: 200px;
 }
+#total #actual {
+    text-decoration: line-through;
+}
 #total p {
     margin: 0;
 }

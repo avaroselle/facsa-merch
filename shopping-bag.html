@@ -101,6 +101,15 @@
                 </div>
             `;
             cartContainer.appendChild(totalPrice);
+            if (cart.length === 2) {
+                totalPrice.innerHTML = `
+                <div id="total">
+                    <strong>TOTAL:</strong>
+                    <p id="actual">$${total}.00</p>
+                    <p>$40.00</p>
+                </div>
+            `;
+            }
         }
 
         function removeItem(index) {
