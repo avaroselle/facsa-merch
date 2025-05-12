@@ -156,7 +156,7 @@
                 headers: {
                     'Content-Type': 'application/json' // Changed from 'text/plain' to 'application/json'
                 },
-                mode: 'cors',
+                mode: 'no-cors',
                 body: JSON.stringify({ name, email, order: cart })
             })
             .then(response => {
