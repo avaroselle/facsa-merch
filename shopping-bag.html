@@ -176,6 +176,14 @@
                 alert('Order failed. Please try again later.');
             });
         }
+        window.onload = function() {
+            const name = sessionStorage.getItem("name");
+            const email = sessionStorage.getItem("email");
+            if (!name || !email) {
+                showPopup();
+            }
+            displayCart();
+        }
     </script>
 
 </body>
