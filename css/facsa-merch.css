@@ -86,3 +86,7 @@ h1 {
     color: rgb(192, 0, 0);
     transition: 1.2s ease;
 }
+
+@media screen and (max-width: 768px) {
+    
+}
