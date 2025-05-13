@@ -61,7 +61,7 @@ nav a:hover {
         display: flex;
         align-items: center;
         width: 248px;
-        gap: 2rem;
+        gap: 1.5rem;
         padding: 0%;
     }
 
@@ -94,7 +94,7 @@ nav a:hover {
     }
 
     #bag {
-        height: 1rem;
+        height: 35px;
         transition: all 0.5s;
     }
 
