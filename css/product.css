@@ -307,8 +307,6 @@ h2 {
     }
 
     #logo {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        position: relative;
     }
 }
