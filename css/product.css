@@ -306,7 +306,7 @@ h2 {
         justify-content: center;
     }
 
-    #logo {
-        position: relative;
+    nav {
+        height: 87.2px;
     }
 }
