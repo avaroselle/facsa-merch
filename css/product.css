@@ -159,8 +159,9 @@ h2 {
     #item {
     display: flex;
     flex-wrap: wrap;
-    /* margin-top: 70px;
-    gap: 3rem; */
+    padding-left: 0;
+    margin-top: 70px;
+    gap: 3rem;
     }
     #item img {
     width: calc(100%);
