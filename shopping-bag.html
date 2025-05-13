@@ -63,12 +63,6 @@
         const poButton = document.getElementById('place');
         const totPrice = document.getElementById("total");
 
-        let total = 0;
-
-        cart.forEach(item => {
-            total += 25.00;
-        });
-
         if (cart.length === 0) {
             emptyMessage.style.display = 'block';
             csButton.style.display = 'block';
@@ -154,7 +148,7 @@
                 total = 40.00;
             }
 
-            console.log("Sending order to backend:", { name, email, order: cart });
+            console.log("Sending order to backend:", { name, email, order: cart, total });
 
             // Option 1: Using no-cors mode (when your backend doesn't support CORS)
             fetch('https://script.google.com/macros/s/AKfycbx7RfZ1f5duZP7YZGJKKZU6iYObGWx8pW-oG79VK32nECaFI8xw5YJfHSfsGCFTGMuPIg/exec', {
@@ -163,7 +157,7 @@
                     'Content-Type': 'application/json'
                 },
                 mode: 'no-cors',
-                body: JSON.stringify({ name, email, order: cart, total: total})
+                body: JSON.stringify({ name, email, order: cart, total })
             })
             .then(response => {
                 // With no-cors, we can't check response status or parse JSON
