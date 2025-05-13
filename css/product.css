@@ -160,7 +160,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     margin-top: 70px;
-    gap: 5rem;
+    gap: 3rem;
     }
     #item img {
     width: calc(100%);
@@ -256,7 +256,7 @@ h2 {
         transform: rotate(180deg);
     }
     .size {
-        padding: 0.2em 0.5em;
+        padding: 0.2em;
         background:rgb(232, 232, 232);
         border: 1px rgb(232, 232, 232) solid;
         box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
