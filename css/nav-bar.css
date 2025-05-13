@@ -82,16 +82,14 @@ nav a:hover {
     }
 
     #left {
-        padding-right: 2rem;
+        padding-right: 1.5rem;
     }
 
     #right {
-        padding-left: 2rem;
+        padding-left: 1.5rem;
     }
 
     #logo {
-        display:block;
-        margin:auto;
         height: 75px;
     }
 
