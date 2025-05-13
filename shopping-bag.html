@@ -163,7 +163,7 @@
                     'Content-Type': 'application/json'
                 },
                 mode: 'no-cors',
-                body: JSON.stringify({ name, email, order: cart, total: totalP })
+                body: JSON.stringify({ name, email, order: cart, total: total })
             })
             .then(response => {
                 // With no-cors, we can't check response status or parse JSON
