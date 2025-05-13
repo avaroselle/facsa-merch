@@ -61,7 +61,13 @@
         const emptyMessage = document.getElementById('empty-message');
         const csButton = document.getElementById('continue');
         const poButton = document.getElementById('place');
-        const totPrice = document.getElementById("total");
+        const totPrice = document.getElementById("totalP");
+
+        let totalP = 0;
+
+        cart.forEach(item => {
+            totalP += 25.00;
+        });
 
         if (cart.length === 0) {
             emptyMessage.style.display = 'block';
@@ -93,7 +99,7 @@
                 totalPrice.innerHTML = `
                     <div id="total">
                         <strong>TOTAL:</strong>
-                        <p id="original-price">$${total}.00</p>
+                        <p id="original-price">$${totalP}.00</p>
                         <p id="discounted-price">$40.00</p>
                     </div>
                 `;
@@ -101,7 +107,7 @@
                 totalPrice.innerHTML = `
                     <div id="total">
                         <strong>TOTAL:</strong>
-                        <p>$${total}.00</p>
+                        <p>$${totalP}.00</p>
                     </div>
                 `;
             }
