@@ -81,6 +81,10 @@ nav a:hover {
         color: rgb(192, 0, 0);
     }
 
+    #left {
+        padding-right: 2rem;
+    }
+
     #right {
         padding-left: 2rem;
     }
