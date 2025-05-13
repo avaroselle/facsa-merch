@@ -75,3 +75,13 @@ html {
     color: rgb(192, 0, 0);
     transition: 1.2s ease;
 }
+
+@media screen and (max-width: 768px) {
+    #product h2 {
+        padding-left: 50px;
+    }
+
+    #product p {
+        padding-left: 50px;
+    }
+}

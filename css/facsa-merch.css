@@ -91,4 +91,8 @@ h1 {
     #product h2 {
         padding-left: 50px;
     }
+
+    #product p {
+        padding-left: 50px;
+    }
 }
