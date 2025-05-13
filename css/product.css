@@ -156,6 +156,12 @@ h2 {
 }
 
 @media screen and (max-width: 768px) {
+    #item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    gap: 5rem;
+    }
     #item img {
     width: calc(100%);
     }
@@ -174,38 +180,38 @@ h2 {
 
     #black {
         background-color: black;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: 1px solid black;
     }
     #grey {
         background-color: rgb(216, 216, 216);
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: 1px solid rgb(216, 216, 216);
     }
     #navy {
         background-color: rgb(1, 23, 73);
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: 1px solid rgb(1, 23, 73);
     }
     #blue {
         background-color: rgb(0, 89, 173);
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: 1px solid rgb(0, 89, 173);
     }
     #yellow {
         background-color: rgb(251, 216, 96);
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: 1px solid rgb(251, 216, 96);
     }
     #red {
         background-color: rgb(241, 45, 55);
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: 1px solid rgb(241, 45, 55);
     }
 
@@ -220,7 +226,7 @@ h2 {
         margin-top: 6px;
     }
     .select {
-        width: 60px;
+        width: 30px;
         background: white;
         color: black;
         display: flex;
