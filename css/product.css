@@ -167,6 +167,10 @@ h2 {
     width: calc(100%);
     }
 
+    #details {
+        padding-left: 50px;
+    }
+
     #colors {
         display: flex;
         gap: 1rem;
