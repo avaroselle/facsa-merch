@@ -55,8 +55,9 @@ main {
     margin-top: 10px;
     width: 200px;
 }
-#total #actual {
+#total #original-price {
     text-decoration: line-through;
+    color: grey;
 }
 #total p {
     margin: 0;

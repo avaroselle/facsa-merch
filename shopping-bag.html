@@ -95,21 +95,21 @@
                 cartContainer.appendChild(itemDiv);
             });
             const totalPrice = document.createElement("div");
-            totalPrice.innerHTML = `
-                <div id="total">
-                    <strong>TOTAL:</strong>
-                    <p>$${total}.00</p>
-                </div>
-            `;
-            cartContainer.appendChild(totalPrice);
             if (cart.length === 2) {
                 totalPrice.innerHTML = `
-                <div id="total">
-                    <strong>TOTAL:</strong>
-                    <p id="actual">$${total}.00</p>
-                    <p>$40.00</p>
-                </div>
-            `;
+                    <div id="total">
+                        <strong>TOTAL:</strong>
+                        <p id="original-price">$${total}.00</p>
+                        <p id="discounted-price">$40.00</p>
+                    </div>
+                `;
+            } else {
+                totalPrice.innerHTML = `
+                    <div id="total">
+                        <strong>TOTAL:</strong>
+                        <p>$${total}.00</p>
+                    </div>
+                `;
             }
         }
 
@@ -148,6 +148,11 @@
             const name = sessionStorage.getItem("name") || "";
             const email = sessionStorage.getItem("email") || "";
 
+            let total = cart.length * 25.00;
+            if (cart.length === 2) {
+                total = 40.00;
+            }
+
             console.log("Sending order to backend:", { name, email, order: cart });
 
             // Option 1: Using no-cors mode (when your backend doesn't support CORS)
@@ -157,7 +162,7 @@
                     'Content-Type': 'application/json'
                 },
                 mode: 'no-cors',
-                body: JSON.stringify({ name, email, order: cart })
+                body: JSON.stringify({ name, email, order: cart, total: total})
             })
             .then(response => {
                 // With no-cors, we can't check response status or parse JSON
@@ -165,6 +170,7 @@
                 console.log('Order submitted, but response details unavailable due to no-cors mode');
                 alert('Order placed successfully!');
                 sessionStorage.removeItem('cart');
+                window.reload();
                 // window.location.href = "order-confirmation.html"; // Optional: redirect to a confirmation page
             })
             .catch(error => {
