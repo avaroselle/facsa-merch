@@ -23,7 +23,7 @@
             <a href="index.html"><img id="logo" src="images/facsa-logo.png" alt="logo"></a>
             <ul id="right">
                 <li><a href="guide.html">HOW THIS WORKS</a></li>
-                <li><a href="shopping-bag.html"><img id="bag" src="../images/bag.png"></a></li>
+                <li><a href="shopping-bag.html"><img id="bag" src="images/bag.png"></a></li>
             </ul>
         </nav>
     </header>
@@ -95,19 +95,28 @@
                 cartContainer.appendChild(itemDiv);
             });
             const totalPrice = document.createElement("div");
-            if (cart.length === 2) {
+            const numItemPairs = Math.floor((cart.length)/2);
+            if ((cart.length)%2 === 0) {
                 totalPrice.innerHTML = `
                     <div id="total">
                         <strong>TOTAL:</strong>
                         <p id="original-price">$${totalP}.00</p>
-                        <p id="discounted-price">$40.00</p>
+                        <p id="discounted-price">$${numItemPairs*40}.00</p>
+                    </div>
+                `;
+            } else if (cart.length === 1) {
+                totalPrice.innerHTML = `
+                    <div id="total">
+                        <strong>TOTAL:</strong>
+                        <p>$${totalP}.00</p>
                     </div>
                 `;
             } else {
                 totalPrice.innerHTML = `
                     <div id="total">
                         <strong>TOTAL:</strong>
-                        <p>$${totalP}.00</p>
+                        <p id="original-price">$${totalP}.00</p>
+                        <p>$${(numItemPairs*40)+25}.00</p>
                     </div>
                 `;
             }
@@ -150,8 +159,11 @@
             const email = sessionStorage.getItem("email") || "";
 
             let total = cart.length * 25.00;
-            if (cart.length === 2) {
-                total = 40.00;
+            const numItemPairs = Math.floor((cart.length)/2);
+            if ((cart.length)%2 === 0) {
+                total = numItemPairs*40;
+            } else {
+                total = (numItemPairs*40) + 25;
             }
 
             console.log("Sending order to backend:", { name, email, order: cart, total });
